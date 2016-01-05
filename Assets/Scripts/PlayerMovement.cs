@@ -16,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
 	private float normalizedHorizontalSpeed = 0;
 
+    private LayerMask stairLayer = 10;
+    private bool canClimb;
+    private bool isClimbing;
+    private bool isAttacking;
 	private CharacterController2D _controller;
 	private Animator _animator;
 	private RaycastHit2D _lastControllerColliderHit;
@@ -59,12 +63,33 @@ public class PlayerMovement : MonoBehaviour
 		Debug.Log( "onTriggerExitEvent: " + col.gameObject.name );
 	}
 
-	#endregion
+    #endregion
 
+    void OnTriggerEnter2D (Collider2D stairs)
+    {
+        canClimb = true;
 
-	// the Update loop contains a very simple example of moving the character around and controlling the animation
-	void Update()
+    }
+
+    void OnTriggerExit2D(Collider2D stairs)
+    {
+        canClimb = false;
+        isClimbing = false;
+    }
+
+    IEnumerator WaitAttack()
+    {
+        yield return new WaitForSeconds(0.3f);
+        isAttacking = false;
+    }
+
+    // the Update loop contains a very simple example of moving the character around and controlling the animation
+    void Update()
 	{
+        //Reset position if falling off world
+        if (this.transform.position.y < -7)
+            this.transform.position = new Vector3(0, 10, 0);
+
 		if( _controller.isGrounded )
 			_velocity.y = 0;
 
@@ -74,41 +99,93 @@ public class PlayerMovement : MonoBehaviour
 			if( transform.localScale.x < 0f )
 				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
 
-			if( _controller.isGrounded )
+			if( _controller.isGrounded && !isAttacking)
 				_animator.Play( Animator.StringToHash( "Run" ) );
 		}
-		else if( inputMap.GoLeft() )
-		{
-			normalizedHorizontalSpeed = -1;
-			if( transform.localScale.x > 0f )
-				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
+        else if (inputMap.GoLeft())
+        {
+            normalizedHorizontalSpeed = -1;
+            if (transform.localScale.x > 0f)
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
-			if( _controller.isGrounded )
-				_animator.Play( Animator.StringToHash( "Run" ) );
-		}
-		else
+            if (_controller.isGrounded && !isAttacking)
+                _animator.Play(Animator.StringToHash("Run"));
+        }
+        else if (inputMap.GoHorizontalAnalog() != 0f)
+        {
+            normalizedHorizontalSpeed = inputMap.GoHorizontalAnalog();
+
+            transform.localScale = new Vector3(Mathf.Sign(normalizedHorizontalSpeed), transform.localScale.y, transform.localScale.z);
+
+            if (_controller.isGrounded && !isAttacking)
+                _animator.Play(Animator.StringToHash("Run"));
+        }
+
+        else
 		{
 			normalizedHorizontalSpeed = 0;
 
-			if( _controller.isGrounded )
+			if( _controller.isGrounded && !isAttacking)
 				_animator.Play( Animator.StringToHash( "Idle" ) );
 		}
 
 
-		// we can only jump whilst grounded
-		if( _controller.isGrounded && inputMap.JumpNow() )
+
+        if (inputMap.AttackNow() && !isAttacking)
+        {
+            isAttacking = true;
+            StartCoroutine(WaitAttack());
+            _animator.Play(Animator.StringToHash("Attack"));
+        }
+
+
+        // we can only jump whilst grounded
+        if ( (_controller.isGrounded || isClimbing ) && inputMap.JumpNow() )
 		{
 			_velocity.y = Mathf.Sqrt( 2f * jumpHeight * -gravity );
 			_animator.Play( Animator.StringToHash( "Jump" ) );
 		}
 
+        //Climbing stairs (improvised code just to display the 'moving up' control input. Don't use it for your project)
+        if (canClimb && inputMap.GoUp())
+        {
+            isClimbing = true;
+        }
 
-		// apply horizontal speed smoothing it. dont really do this with Lerp. Use SmoothDamp or something that provides more control
-		var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping; // how fast do we change direction?
+        if (isClimbing)
+        {
+            _velocity.y = 0f;
+            print("going up");
+        }
+
+        if (isClimbing && inputMap.GoUp())
+        {
+            _animator.Play(Animator.StringToHash("Climb"));
+            _velocity.y = 3f;
+        }
+
+
+        if (isClimbing && inputMap.GoDown())
+        {
+            _animator.Play(Animator.StringToHash("Climb"));
+            _velocity.y = -3f;
+        }
+
+        if (inputMap.JumpNow())
+        {
+            isClimbing = false;
+        }
+
+        //End of climbing crazyness
+
+
+        // apply horizontal speed smoothing it. dont really do this with Lerp. Use SmoothDamp or something that provides more control
+        var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping; // how fast do we change direction?
 		_velocity.x = Mathf.Lerp( _velocity.x, normalizedHorizontalSpeed * runSpeed, Time.deltaTime * smoothedMovementFactor );
 
-		// apply gravity before moving
-		_velocity.y += gravity * Time.deltaTime;
+        // apply gravity before moving (only if not climbing
+        if(!isClimbing)
+            _velocity.y += gravity * Time.deltaTime;
 
 		// if holding down bump up our movement amount and turn off one way platform detection for a frame.
 		// this lets uf jump down through one way platforms

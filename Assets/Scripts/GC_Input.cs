@@ -4,13 +4,73 @@ using System.Collections;
 public class GC_Input : MonoBehaviour {
 
     //Variables
+    /*
+    > Floats:
+    LeftDirectional_Horizontal
+    LeftDirectional_Vertical
+    RightDirectional_Horizontal
+    RightDirectional_Vertical
+    BothTriggers
+    LeftTrigger
+    RightTrigger
+
+    > Digitals:
+    LeftDirectional_asLeftButton
+    LeftDirectional_asRightButton
+    LeftDirectional_asUpButton
+    LeftDirectional_asDownButton
+    RightDirectional_asLeftButton
+    RightDirectional_asRightButton
+    RightDirectional_asUpButton
+    RightDirectional_asDownButton
+    LeftTrigger_asButton
+    RightTrigger_asButton
+    DPad_Left
+    DPad_Right
+    DPad_Up
+    DPad_Down
+    A_button_hold
+    B_button_hold
+    X_button_hold
+    Y_button_hold
+    A_button_down
+    B_button_down
+    X_button_down
+    Y_button_down
+    A_button_up
+    B_button_up
+    X_button_up
+    Y_button_up
+    LB_hold
+    LB_down
+    LB_up
+    RB_hold
+    RB_down
+    RB_up
+    LeftDir_press_hold
+    LeftDir_press_down
+    LeftDir_press_up
+    RightDir_press_hold
+    RightDir_press_down
+    RightDir_press_up
+    Start_hold
+    Start_down
+    Start_up
+    Back_hold
+    Back_down
+    Back_up
+    */
+
     //[SerializeField]
     private float inputZeroThreshold = 0.05f;
     private float inputDigitalThreshold = 0.25f;
     public bool IsInputActive { get; private set; }
 
-    // Directionals
+    #region Left and Right Directionals
     private float leftDirectional_Horizontal = 0f;
+    /// <summary>
+    /// Returns an analog value from -1 (Left Directional completely to the LEFT) to 1 (Left Directional completely to the RIGHT), returning 0 when in the middle.
+    /// </summary>
     public float LeftDirectional_Horizontal
     {
         get
@@ -22,7 +82,40 @@ public class GC_Input : MonoBehaviour {
         }
     }
 
+    private bool leftDirectional_asLeftButton;
+    /// <summary>
+    /// Returns TRUE while Left Directional is moved to the LEFT (past the threshold). Returns FALSE when released.
+    /// </summary>
+    public bool LeftDirectional_asLeftButton
+    {
+        get
+        {
+            if (leftDirectional_Horizontal <= -inputDigitalThreshold)
+                return true;
+            else
+                return false;
+        }
+    }
+
+    private bool leftDirectional_asRightButton;
+    /// <summary>
+    /// Returns TRUE while Left Directional is moved to the RIGHT (past the threshold). Returns FALSE when released.
+    /// </summary>
+    public bool LeftDirectional_asRightButton
+    {
+        get
+        {
+            if (leftDirectional_Horizontal >= inputDigitalThreshold)
+                return true;
+            else
+                return false;
+        }
+    }
+
     private float leftDirectional_Vertical = 0f;
+    /// <summary>
+    /// Returns an analog value from -1 (Left Directional completely to the TOP) to 1 (Left Directional completely to the BOTTOM), returning 0 when in the middle.
+    /// </summary>
     public float LeftDirectional_Vertical
     {
         get
@@ -34,7 +127,40 @@ public class GC_Input : MonoBehaviour {
         }
     }
 
+    private bool leftDirectional_asUpButton;
+    /// <summary>
+    /// Returns TRUE while Left Directional is moved to the TOP (past the threshold). Returns FALSE when released.
+    /// </summary>
+    public bool LeftDirectional_asUpButton
+    {
+        get
+        {
+            if (leftDirectional_Vertical <= -inputDigitalThreshold)
+                return true;
+            else
+                return false;
+        }
+    }
+
+    private bool leftDirectional_asDownButton;
+    /// <summary>
+    /// Returns TRUE while Left Directional is moved to the BOTTOM (past the threshold). Returns FALSE when released.
+    /// </summary>
+    public bool LeftDirectional_asDownButton
+    {
+        get
+        {
+            if (leftDirectional_Vertical >= inputDigitalThreshold)
+                return true;
+            else
+                return false;
+        }
+    }
+
     private float rightDirectional_Horizontal = 0f;
+    /// <summary>
+    /// Returns an analog value from -1 (Right Directional completely to the LEFT) to 1 (Rightt Directional completely to the RIGHT), returning 0 when in the middle.
+    /// </summary>
     public float RightDirectional_Horizontal
     {
         get
@@ -46,7 +172,40 @@ public class GC_Input : MonoBehaviour {
         }
     }
 
+    private bool rightDirectional_asLeftButton;
+    /// <summary>
+    /// Returns TRUE while Right Directional is moved to the LEFT (past the threshold). Returns FALSE when released.
+    /// </summary>
+    public bool RightDirectional_asLeftButton
+    {
+        get
+        {
+            if (rightDirectional_Horizontal <= -inputDigitalThreshold)
+                return true;
+            else
+                return false;
+        }
+    }
+
+    private bool rightDirectional_asRightButton;
+    /// <summary>
+    /// Returns TRUE while Rightt Directional is moved to the RIGHT (past the threshold). Returns FALSE when released.
+    /// </summary>
+    public bool RightDirectional_asRightButton
+    {
+        get
+        {
+            if (rightDirectional_Horizontal >= inputDigitalThreshold)
+                return true;
+            else
+                return false;
+        }
+    }
+
     private float rightDirectional_Vertical = 0f;
+    /// <summary>
+    /// Returns an analog value from -1 (Right Directional completely to the TOP) to 1 (Right Directional completely to the BOTTOM), returning 0 when in the middle.
+    /// </summary>
     public float RightDirectional_Vertical
     {
         get
@@ -57,9 +216,40 @@ public class GC_Input : MonoBehaviour {
                 return 0f;
         }
     }
-    //End of Directionals
 
-    //Triggers
+    private bool rightDirectional_asUpButton;
+    /// <summary>
+    /// Returns TRUE while Rightt Directional is moved to the TOP (past the threshold). Returns FALSE when released.
+    /// </summary>
+    public bool RightDirectional_asUpButton
+    {
+        get
+        {
+            if (rightDirectional_Vertical <= -inputDigitalThreshold)
+                return true;
+            else
+                return false;
+        }
+    }
+
+    private bool rightDirectional_asDownButton;
+    /// <summary>
+    /// Returns TRUE while Rightt Directional is moved to the BOTTOM (past the threshold). Returns FALSE when released.
+    /// </summary>
+    public bool RightDirectional_asDownButton
+    {
+        get
+        {
+            if (rightDirectional_Vertical >= inputDigitalThreshold)
+                return true;
+            else
+                return false;
+        }
+    }
+    #endregion
+
+    #region Triggers
+
     private float bothTriggers = 0f;
     public float BothTriggers
     {
@@ -119,9 +309,9 @@ public class GC_Input : MonoBehaviour {
                 return false;
         }
     }
-    //End of Triggers
+    #endregion
 
-    //DPADs
+    #region DPADs
     private float dPad_Horizontal;
     public bool DPad_Left
     {
@@ -167,9 +357,9 @@ public class GC_Input : MonoBehaviour {
                 return false;
         }
     }
-    //End of DPads
+    #endregion
 
-    //Buttons ABXY
+    #region Buttons ABXY
     public bool A_button_hold { get; private set; }
     public bool B_button_hold { get; private set; }
     public bool X_button_hold { get; private set; }
@@ -182,38 +372,42 @@ public class GC_Input : MonoBehaviour {
     public bool B_button_up { get; private set; }
     public bool X_button_up { get; private set; }
     public bool Y_button_up { get; private set; }
+    #endregion
 
-    //Bumbers
+    #region Bumbers
     public bool LB_hold { get; private set; }
     public bool LB_down { get; private set; }
     public bool LB_up { get; private set; }
     public bool RB_hold { get; private set; }
     public bool RB_down { get; private set; }
     public bool RB_up { get; private set; }
+    #endregion
 
-    //Directional Press
+    #region Directional Press
     public bool LeftDir_press_hold { get; private set; }
     public bool LeftDir_press_down { get; private set; }
     public bool LeftDir_press_up { get; private set; }
     public bool RightDir_press_hold { get; private set; }
     public bool RightDir_press_down { get; private set; }
     public bool RightDir_press_up { get; private set; }
+    #endregion
 
-    //Start and Back Buttons
+    #region Start and Back Buttons
     public bool Start_hold { get; private set; }
     public bool Start_down { get; private set; }
     public bool Start_up { get; private set; }
     public bool Back_hold { get; private set; }
     public bool Back_down { get; private set; }
     public bool Back_up { get; private set; }
+    #endregion
 
-    // Use this for initialization
+    // Keep object alive in every scene
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
     }
 
-    // Update is called once per frame
+    // Check for controller inputs
     void Update()
     {
         //Left Directional

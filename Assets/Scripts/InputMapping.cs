@@ -7,7 +7,7 @@ public class InputMapping : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	
+        controllerInput = GetComponent<GC_Input>();
 	}
 	
 	// Update is called once per frame
@@ -17,6 +17,11 @@ public class InputMapping : MonoBehaviour {
             return true;
         else
             return false;
+    }
+
+    public float GoHorizontalAnalog()
+    {
+        return controllerInput.LeftDirectional_Horizontal;
     }
 
     public bool GoLeft()
@@ -29,12 +34,15 @@ public class InputMapping : MonoBehaviour {
 
     public bool GoUp()
     {
-        return false;
+        if (controllerInput.DPad_Up || controllerInput.LeftDirectional_asUpButton || Input.GetKey(KeyCode.UpArrow))
+            return true;
+        else
+            return false;
     }
 
     public bool GoDown()
     {
-        if (controllerInput.DPad_Down || Input.GetKey(KeyCode.DownArrow))
+        if (controllerInput.DPad_Down || controllerInput.LeftDirectional_asDownButton || Input.GetKey(KeyCode.DownArrow))
             return true;
         else
             return false;
@@ -48,9 +56,12 @@ public class InputMapping : MonoBehaviour {
             return false;
     }
 
-    public bool ShootNow()
+    public bool AttackNow()
     {
-        return false;
+        if (controllerInput.X_button_down || Input.GetKey(KeyCode.F))
+            return true;
+        else
+            return false;
     }
 
     public bool DuckNow()
