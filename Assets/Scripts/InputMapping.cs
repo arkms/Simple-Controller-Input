@@ -3,11 +3,11 @@ using System.Collections;
 
 public class InputMapping : MonoBehaviour {
 
-    public GC_Input controllerInput;
+    public GameControllerInputs controllerInput;
 
     // Use this for initialization
     void Start () {
-        controllerInput = GetComponent<GC_Input>();
+        controllerInput = GetComponent<GameControllerInputs>();
 	}
 	
 	// Update is called once per frame
@@ -67,5 +67,41 @@ public class InputMapping : MonoBehaviour {
     public bool DuckNow()
     {
         return false;
+    }
+
+    public bool MotorOff()
+    {
+        if (controllerInput.RightDir_press_down || Input.GetKey(KeyCode.K))
+            return true;
+        else
+            return false;
+        return false;
+    }
+
+    public bool MotorOn()
+    {
+        if (controllerInput.RightTrigger_asButton || Input.GetKey(KeyCode.M))
+            return true;
+        else
+            return false;
+        return false;
+    }
+
+    public bool ChangeToAlien()
+    {
+        if (controllerInput.LB_down || Input.GetKey(KeyCode.Alpha1))
+            return true;
+        else
+            return false;
+
+    }
+
+    public bool ChangeToShip()
+    {
+        if (controllerInput.RB_down || Input.GetKey(KeyCode.Alpha2))
+            return true;
+        else
+            return false;
+
     }
 }

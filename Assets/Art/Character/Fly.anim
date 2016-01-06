@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Jump
+  m_Name: Fly
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,12 +19,14 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: ac55a922a410e1042924101da6467bff, type: 3}
+      value: {fileID: 21300000, guid: 4ba49d4c153a02e41af6503323c32ee8, type: 3}
+    - time: 0.083333336
+      value: {fileID: 21300000, guid: fa25fbd7a6ffed64292383b54e761e88, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 6
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -38,7 +40,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: ac55a922a410e1042924101da6467bff, type: 3}
+    - {fileID: 21300000, guid: 4ba49d4c153a02e41af6503323c32ee8, type: 3}
+    - {fileID: 21300000, guid: fa25fbd7a6ffed64292383b54e761e88, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
