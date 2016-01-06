@@ -4,20 +4,21 @@ using System.Collections;
 public class GameControllerInputs : MonoBehaviour {
 
     //Variables
-    /*
-
-        ACCESS THE INPUTS BY GETTING THEIR VALUES BY THE NAMES LISTED BELOW!
     
-        > Floats ( -1 to 1; 0 to 1; -1 to 0):
-    LeftDirectional_Horizontal
-    LeftDirectional_Vertical
-    RightDirectional_Horizontal
-    RightDirectional_Vertical
-    BothTriggers
-    LeftTrigger
-    RightTrigger
+    /*
+    ACCESS THE INPUTS BY GETTING THEIR VALUES BY THE NAMES LISTED BELOW!
+    (copy this list to your input mapping script if you think it'll help you to find the input names faster)
+    
+        > Analogs (returns a float):
+    LeftDirectional_Horizontal  (returns: 0 to -1 <left>; 0 to 1 <right>)
+    LeftDirectional_Vertical    (returns: 0 to -1 <up>; 0 to 1 <down>)
+    RightDirectional_Horizontal (returns: 0 to -1 <left>; 0 to 1 <right>)
+    RightDirectional_Vertical   (returns: 0 to -1 <up>; 0 to 1 <down>)
+    BothTriggers                (returns: -1 to 1 <depends on the combination of both triggers>)
+    LeftTrigger                 (returns: 0 to 1)
+    RightTrigger                (returns: 0 to 1)
 
-        > Digitals (True or False):
+        > Digitals (returns a boolean - true when pressed):
     LeftDirectional_asLeftButton
     LeftDirectional_asRightButton
     LeftDirectional_asUpButton

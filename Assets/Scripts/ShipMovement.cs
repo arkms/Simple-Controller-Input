@@ -6,6 +6,7 @@ public class ShipMovement : MonoBehaviour {
     public InputMapping inputMap;
     private Animator _animator;
     private Rigidbody2D rb;
+    public Rigidbody2D coinPrefab;
 
     private bool canMove = false;
 
@@ -71,6 +72,20 @@ public class ShipMovement : MonoBehaviour {
             else
             {
                 rb.rotation = 0f;
+            }
+
+            if(inputMap.ShootCoinDown())
+            {
+                Rigidbody2D coinInstance;
+                coinInstance = Instantiate(coinPrefab, (this.transform.position + new Vector3(0, -1f, 0)), this.transform.rotation) as Rigidbody2D;
+                coinInstance.AddForce(-5 * rb.transform.up, ForceMode2D.Impulse);
+            }
+
+            if (inputMap.ShootCoinUp())
+            {
+                Rigidbody2D coinInstance;
+                coinInstance = Instantiate(coinPrefab, (this.transform.position + new Vector3(0, 1f, 0)), this.transform.rotation) as Rigidbody2D;
+                coinInstance.AddForce(5 * rb.transform.up, ForceMode2D.Impulse);
             }
         }
 

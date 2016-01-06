@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
 	private float normalizedHorizontalSpeed = 0;
 
-    private LayerMask stairLayer = 10;
     private bool canClimb;
     private bool isClimbing;
     private bool isAttacking;
