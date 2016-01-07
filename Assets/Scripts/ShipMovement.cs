@@ -3,27 +3,29 @@ using System.Collections;
 
 public class ShipMovement : MonoBehaviour {
 
-    public InputMapping inputMap;
+    private InputMapping inputMap;
     private Animator _animator;
     private Rigidbody2D rb;
     public Rigidbody2D coinPrefab;
 
     private bool canMove = false;
 
-    // Use this for initialization
+    // Initialization
     void Awake () {
         _animator = GetComponent<Animator>();
+        inputMap = GameObject.Find("Input Manager").GetComponent<InputMapping>();
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
     }
 	
-	// Update is called once per frame
+	// Check inputs every frame
 	void Update () {
 
         //Reset position if falling off world
         if (this.transform.position.y < -7)
             this.transform.position = new Vector3(5, 10, 0);
 
+        //Character swapping
         if (inputMap.ChangeToAlien())
         {
             rb.rotation = 0f;
@@ -40,6 +42,7 @@ public class ShipMovement : MonoBehaviour {
             rb.freezeRotation = false;
         }
 
+        //Movement and Actions
         if (canMove)
         {
             if (inputMap.GoUp())

@@ -65,10 +65,9 @@ public class GameControllerInputs : MonoBehaviour {
     Back_up
     */
 
-    //[SerializeField]
-    private float inputZeroThreshold = 0.05f;
-    private float inputDigitalThreshold = 0.25f;
-    public bool IsInputActive { get; private set; }
+    private float inputZeroThreshold = 0.05f;           //Filters small value fluctuations when the analog inputs are released.
+    private float inputDigitalThreshold = 0.25f;        //Minimum value that an analog input can be considered active when used as a digital button.
+    public bool IsInputActive { get; private set; }     //True when any input is active.
 
     #region Left and Right Directionals
         private float leftDirectional_Horizontal = 0f;

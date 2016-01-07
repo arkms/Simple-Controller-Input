@@ -132,7 +132,6 @@ public class PlayerMovement : MonoBehaviour
                 if (_controller.isGrounded && !isAttacking)
                     _animator.Play(Animator.StringToHash("Run"));
             }
-
             else
             {
                 normalizedHorizontalSpeed = 0;
@@ -141,15 +140,12 @@ public class PlayerMovement : MonoBehaviour
                     _animator.Play(Animator.StringToHash("Idle"));
             }
 
-
-
             if (inputMap.AttackNow() && !isAttacking)
             {
                 isAttacking = true;
                 StartCoroutine(WaitAttack());
                 _animator.Play(Animator.StringToHash("Attack"));
             }
-
 
             // we can only jump whilst grounded
             if ((_controller.isGrounded || isClimbing) && inputMap.JumpNow())
@@ -166,8 +162,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (isClimbing)
             {
-                _velocity.y = 0f;
-                print("going up");
+                _velocity.y = 0f;;
             }
 
             if (isClimbing && inputMap.GoUp())
@@ -175,7 +170,6 @@ public class PlayerMovement : MonoBehaviour
                 _animator.Play(Animator.StringToHash("Climb"));
                 _velocity.y = 3f;
             }
-
 
             if (isClimbing && inputMap.GoDown())
             {
@@ -186,10 +180,7 @@ public class PlayerMovement : MonoBehaviour
             if (inputMap.JumpNow())
             {
                 isClimbing = false;
-            }
-
-            //End of climbing crazyness
-
+            }  //End of climbing hack code
 
             // apply horizontal speed smoothing it. dont really do this with Lerp. Use SmoothDamp or something that provides more control
             var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping; // how fast do we change direction?

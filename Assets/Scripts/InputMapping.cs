@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InputMapping : MonoBehaviour {
 
-    public GameControllerInputs controllerInput;
+    private GameControllerInputs controllerInput;
 
     // Use this for initialization
     void Start () {
