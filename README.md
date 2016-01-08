@@ -5,7 +5,7 @@ A simple XBox Game Controller input manager for your Unity project.
 This project aims to simplify accessing an XBOX Controller inputs and using them in your game.
 It allows for rapid prototyping and project modularity when dealing with multiple inputs from the keyboard, a mouse and a game controller.
 
-[![Example Image](https://github.com/andre-lima/Simple-Controller-Input/blob/master/example_image.png)](#features)
+[![Example Image](https://raw.githubusercontent.com/andre-lima/Simple-Controller-Input/master/example_image.PNG)](#features)
 
 
 ## HOW TO SET IT UP
