@@ -4,6 +4,7 @@ A simple XBox Game Controller input manager for your Unity project.
 
 This project aims to simplify accessing an XBOX Controller inputs and using them in your game.
 It allows for rapid prototyping and project modularity when dealing with multiple inputs from the keyboard, a mouse and a game controller.
+The Demo Scene uses free art from [Kenney](https://www.kenney.nl) and the [Character Controller 2D](https://github.com/prime31/CharacterController2D) from Prime31.
 
 [![Example Image](https://raw.githubusercontent.com/andre-lima/Simple-Controller-Input/master/example_image.PNG)](#features)
 
@@ -24,6 +25,8 @@ If using this code on a project you already have set up, follow the following in
 Please consider using the part of the code that gets the inputs on an Update() method (or send me a message if you know how to fix this!).
 
 - This manager only works with one controller being used at a time.
+
+- Since it was intended to be just an example, some things are not working very well. The Mecanim system is not properly setup, so the animations are very bad. Pressing down and jumping makes the Alien jump really high. The Spaceship has no collision when flying.
 
 ## How to Get the Controller Inputs
 
