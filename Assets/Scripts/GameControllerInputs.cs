@@ -4,62 +4,74 @@ using System.Collections;
 public class GameControllerInputs : MonoBehaviour {
 
     //Variables
-    
+
     /*
-    ACCESS THE INPUTS BY GETTING THEIR VALUES BY THE NAMES LISTED BELOW!
-    (copy this list to your input mapping script if you think it'll help you to find the input names faster)
-    
-        > Analogs (returns a float):
+ **ANALOG (returns a float):**
     LeftDirectional_Horizontal  (returns: 0 to -1 <left>; 0 to 1 <right>)
     LeftDirectional_Vertical    (returns: 0 to -1 <up>; 0 to 1 <down>)
+
     RightDirectional_Horizontal (returns: 0 to -1 <left>; 0 to 1 <right>)
     RightDirectional_Vertical   (returns: 0 to -1 <up>; 0 to 1 <down>)
+
     BothTriggers                (returns: -1 to 1 <depends on the combination of both triggers>)
     LeftTrigger                 (returns: 0 to 1)
     RightTrigger                (returns: 0 to 1)
 
-        > Digitals (returns a boolean - true when pressed):
+ **DIGITAL (returns a boolean - true when pressed):**
     LeftDirectional_asLeftButton
     LeftDirectional_asRightButton
     LeftDirectional_asUpButton
     LeftDirectional_asDownButton
+    
     RightDirectional_asLeftButton
     RightDirectional_asRightButton
     RightDirectional_asUpButton
     RightDirectional_asDownButton
+    
     LeftTrigger_asButton
     RightTrigger_asButton
+    
     DPad_Left
     DPad_Right
     DPad_Up
     DPad_Down
+    
     A_button_hold
-    B_button_hold
-    X_button_hold
-    Y_button_hold
     A_button_down
-    B_button_down
-    X_button_down
-    Y_button_down
     A_button_up
+    
+    B_button_hold
+    B_button_down
     B_button_up
+    
+    X_button_hold
+    X_button_down
     X_button_up
+    
+    Y_button_hold
+    Y_button_down
     Y_button_up
+    
     LB_hold
     LB_down
     LB_up
+    
     RB_hold
     RB_down
     RB_up
+    
     LeftDir_press_hold
     LeftDir_press_down
     LeftDir_press_up
+    
     RightDir_press_hold
     RightDir_press_down
     RightDir_press_up
+    
     Start_hold
     Start_down
     Start_up
+    
     Back_hold
     Back_down
     Back_up
