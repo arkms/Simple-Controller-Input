@@ -1,5 +1,5 @@
 # Simple Controller Input - For Unity 3D
-==================================================
+
 A simple XBox Game Controller input manager for your Unity project.
 
 This project aims to simplify accessing an XBOX Controller inputs and using them in your game.
@@ -9,7 +9,7 @@ It allows for rapid prototyping and project modularity when dealing with multipl
 
 
 ## HOW TO SET IT UP
---------------------------------------
+
 If using this code on a project you already have set up, follow the following instructions:
 
 1. Replace the InputManager.asset in your project folder from the one currently in this project.
@@ -19,7 +19,6 @@ If using this code on a project you already have set up, follow the following in
 4. Edit the InputMapping.cs script to better suit your character actions.
 
 ### Known Issues
---------------------------------------
 
 - If you need to use your movement code inside a FixedUpdate(), digital inputs (like a button press) can misbehave, being activated twice on one presse, or not be activated at all.
 Please consider using the part of the code that gets the inputs on an Update() method (or send me a message if you know how to fix this!).
@@ -27,7 +26,6 @@ Please consider using the part of the code that gets the inputs on an Update() m
 - This manager only works with one controller being used at a time.
 
 ## How to Get the Controller Inputs
---------------------------------------
 
 Your character should have an Character Controller of some sort attached to it, where you get the inputs to perform the movements. 
 In this Character Controller, you should add the following code:
@@ -83,7 +81,7 @@ Below, you can find a list of all inputs available:
 *(Check the PDF file inside the Assets folder to see the full description of the variables)*
 
 ```bash    
- > ANALOG (returns a float):**
+ > ANALOG (returns a float):
     LeftDirectional_Horizontal  (returns: 0 to -1 <left>; 0 to 1 <right>)
     LeftDirectional_Vertical    (returns: 0 to -1 <up>; 0 to 1 <down>)
     
@@ -94,7 +92,7 @@ Below, you can find a list of all inputs available:
     LeftTrigger                 (returns: 0 to 1)
     RightTrigger                (returns: 0 to 1)
 
- > DIGITAL (returns a boolean - true when pressed):**
+ > DIGITAL (returns a boolean - true when pressed):
     LeftDirectional_asLeftButton
     LeftDirectional_asRightButton
     LeftDirectional_asUpButton
