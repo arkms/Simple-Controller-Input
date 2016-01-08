@@ -6,7 +6,9 @@ public class GameControllerInputs : MonoBehaviour {
     //Variables
 
     /*
- **ANALOG (returns a float):**
+    Below, you can find a list of all inputs available:
+
+ > ANALOG (returns a float):
     LeftDirectional_Horizontal  (returns: 0 to -1 <left>; 0 to 1 <right>)
     LeftDirectional_Vertical    (returns: 0 to -1 <up>; 0 to 1 <down>)
 
@@ -17,7 +19,7 @@ public class GameControllerInputs : MonoBehaviour {
     LeftTrigger                 (returns: 0 to 1)
     RightTrigger                (returns: 0 to 1)
 
- **DIGITAL (returns a boolean - true when pressed):**
+ > DIGITAL (returns a boolean - true when pressed):
     LeftDirectional_asLeftButton
     LeftDirectional_asRightButton
     LeftDirectional_asUpButton
