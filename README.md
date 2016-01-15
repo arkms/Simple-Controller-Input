@@ -81,12 +81,7 @@ change the Input Mapping when desired, without having to change the Character Co
 
 As in Example 1, you have to access ***controllerInput.(name of input)*** to check the input's state.
 Below, you can find a list of all inputs available:
-<<<<<<< HEAD
-*(Check the "Inputs Documentation.pdf" file inside the Assets folder to see the full description of the variables)*
-=======
-
-*(Check the PDF file inside the Assets folder to see the full description of the variables)*
->>>>>>> c2c2ffaca0cb5188443a03afa1d63e3fba19d431
+> *(Check the "Inputs Documentation.pdf" file inside the Assets folder to see the full description of the variables)*
 
 ```bash    
  > ANALOG (returns a float):
