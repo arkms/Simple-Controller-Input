@@ -621,4 +621,20 @@ public class GameControllerInputs : MonoBehaviour {
         }
 
     }
+
+	//Singleton-----------------------
+	static GameControllerInputs instance;
+	//Return reference of instance of GameController
+	public static GameControllerInputs GetIstance()
+	{
+		return instance;
+	}
+
+	[RuntimeInitializeOnLoadMethod]
+	static void OnLoad()
+	{
+		//Create gameObject
+		GameObject go = new GameObject("GameControllerInput");
+		instance= go.AddComponent<GameControllerInputs>();
+	}
 }

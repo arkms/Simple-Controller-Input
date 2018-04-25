@@ -7,7 +7,7 @@ public class InputMapping : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        controllerInput = GetComponent<GameControllerInputs>();
+		controllerInput = GameControllerInputs.GetIstance();
 	}
 
     // Methods called by any object using the GameControllerInputs script to perform their movement.
