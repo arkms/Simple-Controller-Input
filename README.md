@@ -15,9 +15,7 @@ If using this code on a project you already have set up, follow the following in
 
 1. Replace the InputManager.asset in your project folder from the one currently in this project.
     > *Don't worry: The standard inputs are still present, so if you're already using any type of input in your game, it should still work normally with the new file (unless you have made changes to that file, obviously).*
-2. (optional) In your project, create an Empty Game Object called "Input Manager".
-3. (optional) Drag the InputMapping.cs scripts and drop them on the Input Manager object.
-4. (optional) Edit the InputMapping.cs script to better suit your character actions.
+2. (optional) Edit the InputMapping.cs script to better suit your character actions.
 
 ### Known Issues
 
